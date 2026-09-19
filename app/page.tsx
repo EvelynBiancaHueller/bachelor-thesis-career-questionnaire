@@ -6,11 +6,8 @@ import { NonGamifiedQuestionnaire } from "./components/non-gamified-version/non-
 import { useUser } from "./hooks/use-user";
 import { useQuestionnaireVersion } from "./hooks/use-version";
 import { ensureUserRow, restoreUser } from "./services/authentication";
-import NotFound from "./not-found";
 
 export default function Home() {
-  if (true) return <NotFound/>;
-
   const [dataError, setDataError] = useState<string | null>(null);
 
   const handleDataError = useCallback((message: string) => {

@@ -1,9 +1,8 @@
 export default function NotFound() {
   return (
     <main style={{ padding: "40px", fontFamily: "sans-serif" }}>
-      <h1>Custom 404 from Evelyn’s RIASEC app</h1>
-      <p>If you see this, the deployed Next.js code is being used.</p>
-      <p>Build marker: 2026-09-19-test</p>
+      <h1>Seems like something went wrong with findign the website. Sorry for that!</h1>
+      <p>Wait some time and try again.</p>
     </main>
   );
 }
