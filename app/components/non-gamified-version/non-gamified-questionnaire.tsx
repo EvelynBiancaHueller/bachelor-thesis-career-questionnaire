@@ -56,7 +56,17 @@ export function NonGamifiedQuestionnaire({user}: NonGamifiedQuestionnaireProps) 
 
                 if (!cancelled) {
                     setAnswers(restoredAnswers);
-                    setViewMode("questions");
+
+                    const answeredQuestionIds = Object.keys(restoredAnswers).map(Number);
+                    const lastAnsweredQuestionId = answeredQuestionIds.length > 0 ? Math.max(...answeredQuestionIds) : 0;
+                    const nextQuestionId = lastAnsweredQuestionId + 1;
+
+                    if (nextQuestionId > 60) {
+                        setViewMode("result");
+                    } else {
+                        setQuestionIndex(nextQuestionId - 1);
+                        setViewMode("questions");
+                    }
                 }
             } catch (error) {
                 console.error("Failed to restore answers", error);
@@ -78,7 +88,6 @@ export function NonGamifiedQuestionnaire({user}: NonGamifiedQuestionnaireProps) 
         const isLastQuestion = questionIndex === questions.length - 1;
 
         if (isLastQuestion) {
-            insertAnswer(answers, user.userId)
             setViewMode("result");
             return;
         }
@@ -95,11 +104,19 @@ export function NonGamifiedQuestionnaire({user}: NonGamifiedQuestionnaireProps) 
         setQuestionIndex((current) => current - 1);
     };
 
-    const handleAnswerChange = (answerOptionId: number) => {
+    const handleAnswerChange = async (answerOptionId: number) => {
+        if (!user.userId) return;
+
         setAnswers((current) => ({
         ...current,
         [activeQuestion.id]: answerOptionId,
         }));
+
+        try {
+            await insertAnswer(activeQuestion.id, answerOptionId, user.userId);
+        } catch (error) {
+            console.log("Failed to save answer", error);
+        }
     };
 
     const result = useResult({

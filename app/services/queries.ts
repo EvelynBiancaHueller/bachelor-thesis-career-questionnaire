@@ -179,18 +179,16 @@ export async function insertStageAnswers(answers: Answer[]) {
     if (error) throw new Error(`Failed to insert stage answers: ${error.message}`);
 }
 
-export async function insertAnswer(answers: Record<number, number>, userId: number | null) {
-    const rows = Object.entries(answers)
-        .map(([questionId, answerOption]) => ({
-            user_id: userId, 
-            question_id: questionId,
-            answer_option_id: answerOption,
-        })
-    );
+export async function insertAnswer(questionId: number, answerOptionId: number, userId: number) {
+    const row = {
+        user_id: userId, 
+        question_id: questionId,
+        answer_option_id: answerOptionId
+    }
+    
+    const { error } = await supabase.from("answer").upsert(row, {onConflict: "user_id,question_id"});
 
-    const { error } = await supabase.from("answer").insert(rows);
-
-    if (error) throw new Error(`Failed to insert stage answers: ${error.message}`);
+    if (error) throw new Error(`Failed to insert answer: ${error.message}`);
 }
 
 export async function insertProfileInput(input: ProfileData) {
