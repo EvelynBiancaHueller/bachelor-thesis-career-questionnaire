@@ -56,6 +56,7 @@ export function NonGamifiedQuestionnaire({user}: NonGamifiedQuestionnaireProps) 
 
                 if (!cancelled) {
                     setAnswers(restoredAnswers);
+                    setViewMode("questions");
                 }
             } catch (error) {
                 console.error("Failed to restore answers", error);
