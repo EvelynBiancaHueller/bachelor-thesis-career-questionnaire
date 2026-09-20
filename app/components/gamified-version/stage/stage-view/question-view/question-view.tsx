@@ -39,7 +39,7 @@ export function QuestionPage({
             </div>
 
             <div className="flex min-h-0 flex-1 flex-col px-3">
-                <div className="my-auto flex w-full flex-col items-center gap-6 py-8 sm:gap-8 md:gap-10">
+                <div className="my-auto flex w-full flex-col items-center gap-[clamp(2.5rem,6vh,4rem)] py-8 sm:gap-8 md:gap-10">
                     <div className="flex h-14 max-w-120 items-center justify-center text-center text-[18px] leading-snug text-ink sm:h-16 sm:text-[20px]">
                         {question?.text ?? "No question loaded"}
                     </div>
