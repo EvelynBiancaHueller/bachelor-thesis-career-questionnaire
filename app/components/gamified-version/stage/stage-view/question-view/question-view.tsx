@@ -25,29 +25,31 @@ export function QuestionPage({
 
     return (
         <div className="flex min-h-0 flex-1 flex-col overflow-y-auto">
-            <div className="mt-5 sm:mt-8 md:mt-10 flex flex-col items-center">
+            <div className="shrink-0 pt-12 sm:pt-14 md:pt-16">
                 <div className="mb-1 text-center text-sm text-ink">
                     {percent}%
                 </div>
 
-                <div className="h-3 w-[85%] rounded-full bg-accent-neutral border border-gray-100">
-                    <div className="h-full rounded-full bg-accent-green" style={{ width: `${progress * 100}%` }}/>
+                <div className="mx-auto h-3 w-[85%] rounded-full border border-gray-100 bg-accent-neutral">
+                    <div
+                        className="h-full rounded-full bg-accent-green"
+                        style={{ width: `${progress * 100}%` }}
+                    />
                 </div>
+            </div>
 
-                <div className="mt-10 mb-8 flex w-full flex-col items-center gap-6 px-3 sm:mt-12 sm:mb-8 sm:gap-8 md:mt-16 md:gap-10">
-                    <div className="max-w-120 text-center text-[18px] text-ink sm:text-[20px]">
-                        {question?.text ?? "No question loaded"} 
+            <div className="flex min-h-0 flex-1 flex-col px-3">
+                <div className="my-auto flex w-full flex-col items-center gap-6 py-8 sm:gap-8 md:gap-10">
+                    <div className="flex h-14 max-w-120 items-center justify-center text-center text-[18px] leading-snug text-ink sm:h-16 sm:text-[20px]">
+                        {question?.text ?? "No question loaded"}
                     </div>
 
-                    <AnswerRow readOnly={readOnly} selected={selected} answerOptions={answerOptions} onSelect={onSelect}/>
-
-                    {question?.imagery ? (
-                        <img
-                            src={question.imagery}
-                            alt=""
-                            className="block h-auto w-[36%] max-w-105 min-w-30 sm:w-[40%] mt-5"
-                        />
-                    ): null}
+                    <AnswerRow
+                        readOnly={readOnly}
+                        selected={selected}
+                        answerOptions={answerOptions}
+                        onSelect={onSelect}
+                    />
                 </div>
             </div>
         </div>
