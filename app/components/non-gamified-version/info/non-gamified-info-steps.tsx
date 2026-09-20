@@ -28,7 +28,7 @@ export function getNonGamifiedInfoSteps({
                     By continuing you agree that we can process your data for this study.
                     <br />
                     <br />
-                    <strong>Note:</strong> The best experience is guranteed on desktops.
+                    <strong>Note:</strong> The best experience is guranteed on mobile.
                 </>
             ),
         },
