@@ -20,9 +20,9 @@ export default function Home() {
     onError: handleDataError,
   });
   
-  const assignedVersion = useQuestionnaireVersion(user.user?.questionnaire_version);
+  const assignedVersion = useQuestionnaireVersion(user.user?.questionnaire_version, user.isRestoringUser);
 
-  if (assignedVersion === null) return <main className="p-6">Loading...</main>;
+  if (user.isRestoringUser || assignedVersion === null) return <main className="flex min-h-dvh items-center justify-center">Loading...</main>;
   
   if (assignedVersion === "non-gamified") return (<NonGamifiedQuestionnaire user={user}/>);
 

@@ -3,10 +3,12 @@
 import { QuestionnaireVersion } from "@/model/types";
 import { useEffect, useState } from "react";
 
-export function useQuestionnaireVersion(version?: string) {
+export function useQuestionnaireVersion(version: string | undefined, isRestoringUser: boolean) {
   const [questionnaireVersion, setQuestionnaireVersion] = useState<QuestionnaireVersion | null>(null);
   
   useEffect(() => {
+    if (isRestoringUser) return;
+
     if (version) {
       if (version === "gamified") {
         setQuestionnaireVersion("gamified");
@@ -16,7 +18,7 @@ export function useQuestionnaireVersion(version?: string) {
     } else {
         setQuestionnaireVersion(assignRandomQuestionnaireVersion());
     }
-  }, [version]);
+  }, [version, isRestoringUser]);
 
   return questionnaireVersion;
 }

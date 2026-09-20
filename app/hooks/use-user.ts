@@ -25,7 +25,7 @@ export function useUser({onCreateUser, onRestoreUser, onError}: UseUserOptions):
     const [userId, setUserId] = useState<number | null>(null);
     const [user, setUser] = useState<ApplicationUser | null>(null);
     const [isCreatingUser, setIsCreatingUser] = useState(false);
-    const [isRestoringUser, setIsRestoringUser] = useState(false);
+    const [isRestoringUser, setIsRestoringUser] = useState(true);
 
     useEffect(() => {
         let cancelled = false;
