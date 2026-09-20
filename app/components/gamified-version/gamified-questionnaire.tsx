@@ -87,6 +87,9 @@ export function GamifiedQuestionnaire({user}: GamifiedQuestionnaireProps) {
       await user.createUser(profileData, "gamified");
       stage.addCompletedStage(0);
       stage.unlockStage(STAGE_IDS[0]);
+
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      badge.openBadge();
     } catch (error) {
       console.error("Failed to create user", error);
       data.setDataError?.("We couldn't save your data right now.");

@@ -61,8 +61,8 @@ export function useInfo(options: UseInfoOptions) {
             return;
         }
         
-        await onComplete?.(profileData);
         closeInfo();
+        await onComplete?.(profileData);
         setReadOnly(true);
     }
 
