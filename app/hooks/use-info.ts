@@ -23,7 +23,13 @@ export function useInfo(options: UseInfoOptions) {
     const [readOnly, setReadOnly] = useState(false);
     const [profileData, setProfileData] = useState<ProfileData>(INITIAL_PROFILE_DATA);
 
-    const isProfileComplete = Object.values(profileData).every((value) => value.trim() !== "");
+    const age = Number(profileData.age);
+    const isAgeValid = 
+        profileData.age !== "" &&
+        age >= 10 &&
+        age <= 100;
+
+    const isProfileComplete = Object.values(profileData).every((value) => value.trim() !== "") && isAgeValid;
 
     function openInfo() {
         setStepIndex(0);

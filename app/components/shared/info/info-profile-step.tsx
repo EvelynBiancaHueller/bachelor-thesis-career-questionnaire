@@ -17,6 +17,12 @@ export function ProfileStep({ profileData, onChange, readOnly = false }: Profile
         readOnly ? "text-gray-600" : "text-ink"
     }`;
 
+    const age = Number(profileData.age);
+    const isAgeValid = 
+        profileData.age !== "" &&
+        age >= 10 &&
+        age <= 100;
+
     return (
         <div>
             <div className="grid grid-cols-2 items-center gap-4 pr-3">
@@ -47,13 +53,21 @@ export function ProfileStep({ profileData, onChange, readOnly = false }: Profile
                     id="age"
                     name="age"
                     type="number"
-                    min="0"
+                    min={10}
+                    max={100}
+                    step={1}
                     value={profileData.age}
                     onChange={(e) => onChange("age", e.target.value)}
                     disabled={readOnly} 
                     className={fieldClass}
                     placeholder="Enter age"
                 />
+
+                {profileData.age !== "" && !isAgeValid && !readOnly ? (
+                    <p className="col-start-2 -mt-4 mb-3 text-sm text-red-600">
+                        Please enter a valid age between 10 and 100.
+                    </p>
+                ) : null}
             </div>
 
             <div className="grid grid-cols-2 items-center gap-4 pr-3">
