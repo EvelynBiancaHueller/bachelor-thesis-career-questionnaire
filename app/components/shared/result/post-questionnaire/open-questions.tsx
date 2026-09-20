@@ -9,6 +9,8 @@ type OpenQuestionProps = {
     onAnswerChange: (questionId: number, answer: string) => void;
 };
 
+const MAX_ANSWER_LENGTH = 500;
+
 export function OpenEndedQuestion({
     questions,
     answers,
@@ -37,13 +39,17 @@ export function OpenEndedQuestion({
                                     )}
                                 </div>
                             ) : (
-                                <textarea
-                                    value={answers[answerKey] ?? ""}
-                                    onChange={(e) => onAnswerChange(answerKey, e.target.value)}
-                                    rows={5}
-                                    placeholder="Type your answer here..."
-                                    className="w-full resize-none rounded-2xl border border-gray-100 p-4 text-base text-ink shadow-sm outline-none transition focus:border-gray-300"
-                                />
+                                <div>
+                                    <textarea
+                                        value={answers[answerKey] ?? ""}
+                                        onChange={(e) => onAnswerChange(answerKey, e.target.value)}
+                                        rows={5}
+                                        maxLength={MAX_ANSWER_LENGTH}
+                                        placeholder="Type your answer here..."
+                                        className="w-full resize-none rounded-2xl border border-gray-100 p-4 text-base text-ink shadow-sm outline-none transition focus:border-gray-300"
+                                    />
+                                    <p className="mt-1 text-right text-xs text-gray-400"> {(answers[answerKey] ?? "").length} / {MAX_ANSWER_LENGTH}</p>
+                                </div>
                             )}
                         </div>
                     );
