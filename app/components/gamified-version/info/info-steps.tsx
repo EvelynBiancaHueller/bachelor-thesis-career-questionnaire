@@ -81,7 +81,7 @@ export function getInfoSteps({
             id: "last",
             body: (
                 <>
-                    There are no right or wrong answers — this is about you.
+                    There are no right or wrong answers - this is about you.
                     <br />
                     <br />
                     Take your time, explore at your own pace and let your curiosity guide you. You can change your answers anytime before finishing a stage.

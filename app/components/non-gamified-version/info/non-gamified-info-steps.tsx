@@ -67,7 +67,7 @@ export function getNonGamifiedInfoSteps({
             title: "Information",   
             body: (
                 <>
-                    There are no right or wrong answers — this is about you.
+                    There are no right or wrong answers - this is about you.
                     <br />
                     <br />
                     Take your time. You can change your answers anytime before finishing the questions.
