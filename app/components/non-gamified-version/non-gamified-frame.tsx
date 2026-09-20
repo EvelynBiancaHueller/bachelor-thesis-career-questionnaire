@@ -9,7 +9,7 @@ type NonGamifiedFrameProps = {
 export function NonGamifiedFrame({ children }: NonGamifiedFrameProps) {
   return (
     <main className="min-h-screen bg-neutral-100">
-      <section className="mx-auto flex h-dvh flex-col overflow-hidden w-full max-w-107.5 bg-white px-6 py-8">
+      <section className="mx-auto flex h-dvh w-full max-w-107.5 flex-col bg-white px-6 py-8">
         {children}
       </section>
     </main>

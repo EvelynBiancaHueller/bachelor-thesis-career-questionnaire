@@ -35,16 +35,16 @@ export function NonGamifiedQuestionPage({
 }: NonGamifiedQuestionPageProps) {
   return (
     <NonGamifiedFrame>
-      <div className="mt-25">
-        <div className="flex h-[clamp(7rem,16vh,10rem)] shrink-0 flex-col">
-          <h1 className="flex flex-1 items-center justify-center overflow-y-auto px-8 text-center text-2xl font-normal text-black">
-            {questionText}
-          </h1>
+        <div className="mt-[clamp(1.5rem,2.5vh,3rem)]">
+          <div className="flex h-[clamp(6rem,16vh,10rem)] shrink-0 flex-col">
+            <h1 className="flex flex-1 items-center justify-center overflow-y-auto px-8 text-center text-2xl font-normal text-black">
+              {questionText}
+            </h1>
 
           <div className="border-t border-black" />
         </div>
 
-        <fieldset className="mt-14 space-y-7">
+        <fieldset className="mt-[clamp(2rem,5vh,3.5rem)] space-y-[clamp(1rem,2.5vh,1.75rem)]">
           {answerOptions.map((option) => {
             const selected = selectedAnswerId === option.id;
 
@@ -77,7 +77,7 @@ export function NonGamifiedQuestionPage({
         </fieldset>
       </div>
 
-      <div className="mt-auto grid grid-cols-[1fr_auto_1fr] items-center gap-x-3 pb-5 pt-3">
+      <div className="shrink-0 mt-auto grid grid-cols-[1fr_auto_1fr] items-center gap-x-3 pb-5 pt-3">
         <div className="justify-self-start">
             {questionNumber !== 1 ?
               <FooterButton
