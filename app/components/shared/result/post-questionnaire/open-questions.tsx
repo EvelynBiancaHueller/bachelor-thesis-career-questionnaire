@@ -24,7 +24,7 @@ export function OpenEndedQuestion({
 
                     return (
                         <div key={answerKey}>
-                            <p className="mt-5 mb-3 text-[18px] font-medium text-ink">
+                            <p className="mt-5 mb-3 font-medium text-ink">
                                 {index + 1}. {question.text}
                             </p>
 
