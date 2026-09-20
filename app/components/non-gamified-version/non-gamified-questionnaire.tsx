@@ -28,7 +28,7 @@ export function NonGamifiedQuestionnaire({user}: NonGamifiedQuestionnaireProps) 
     const data = useNonGamifiedDataLoader();
 
     const completeInfo = async (profileData: ProfileData) => {
-        await user.createUser(profileData, "gamified");
+        await user.createUser(profileData, "non-gamified");
         setViewMode("questions");
     }
 
