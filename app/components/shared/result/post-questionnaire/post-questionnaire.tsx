@@ -19,7 +19,7 @@ export function PostQuestionnaire({
     readOnly = false,
 }: PostQuestionnaireProps) {
     return (
-        <div className="flex flex-col items-center max-h-screen overflow-y-auto pb-5">
+        <div className="flex flex-col items-center pb-5">
             <p className="text-center mb-3">Please fill the post questionnaire out to proceed to your results.</p>
             {questions.map((question) => (
                 <div
