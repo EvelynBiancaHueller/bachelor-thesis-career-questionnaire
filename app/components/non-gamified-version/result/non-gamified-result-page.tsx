@@ -69,7 +69,7 @@ export function NonGamifiedResultPage({
                             Your Results
                         </h1>
 
-                        <div className="mt-6 mb-10 border-t border-black" />
+                        <div className="mt-6 mb-6 border-t border-black" />
 
                         <ResultScore
                             riasecData={buildRiasecChartData(result)}

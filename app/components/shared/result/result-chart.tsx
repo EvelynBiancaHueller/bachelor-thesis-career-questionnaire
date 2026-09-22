@@ -25,7 +25,15 @@ export function ResultsChart({ data }: ResultChartProps) {
             margin={{ top: 8, right: 40, left: 0, bottom: 8 }}
         >
             <CartesianGrid strokeDasharray="3 3"/>
-            <XAxis dataKey="key"/>
+            <XAxis 
+                dataKey="label"
+                interval={0}
+                angle={45}
+                textAnchor="start"
+                height={55}
+                tickMargin={2}
+                tick={{fontSize: 12}}
+            />
             <YAxis allowDecimals={false}/>
             <Tooltip/>
             <Bar dataKey="score" shape={<CustomBarShape/>}/>

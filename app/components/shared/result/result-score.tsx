@@ -35,7 +35,7 @@ export function ResultScore({
             </div>
 
             <div className="w-full flex flex-col items-center">
-                <p className="mb-5">Your top three interests are:</p>
+                <p className="mb-5 mt-3">Your top three interests are:</p>
                 {topThreeResults.map((result) => {
                     const isExpanded = expandedResult === result;
 
