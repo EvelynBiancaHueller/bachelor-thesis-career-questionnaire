@@ -141,9 +141,12 @@ function getCursor(node: RoadmapNode, unlockedStages: Set<number>): "pointer" | 
 }
 
 function onClickHandler(node: RoadmapNode, unlockedStages: Set<number>, completedStages: Set<number>, onInfoClick: () => void, onStageClick: (stageId: StageId) => void, onBadgeClick: () => void, onResultsClick: () => void) {
+    const allStagesCompleted = STAGE_IDS.every((stageId) => completedStages.has(stageId));
+    
     if (node.id === 0) return onInfoClick;
-    if (node.id === 6 && completedStages.size === 5) return onResultsClick;
+    if (node.id === 6 && allStagesCompleted) return onResultsClick;
     if (node.id === 7) return onBadgeClick;
     if (isStageNodeId(node.id) && unlockedStages.has(node.id)) return () => onStageClick(node.id as StageId);
+    
     return undefined;
 }
