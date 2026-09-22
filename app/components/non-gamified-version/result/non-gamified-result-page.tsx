@@ -16,7 +16,7 @@ type NonGamifiedResultPageProps = {
     readOnlyPost: boolean;
     answers: Record<number, number>;
     onAnswerChange: (questionId: number, value: LikertValue) => void;
-    onSubmitPostAnswers: () => void;
+    onSubmitPostAnswers: () => Promise<void>;
     onComplete: () => void;
 };
 
@@ -31,23 +31,32 @@ export function NonGamifiedResultPage({
     onSubmitPostAnswers,
     onComplete
 }: NonGamifiedResultPageProps) {
-    const [viewMode, setViewMode] = useState<ViewMode>("postQuestionnaire");
+    const [viewMode, setViewMode] = useState<ViewMode>("result");
 
     const isPostQuestionnaireCompleted = postQuestions.length > 0 && postQuestions.every((question) => postAnswers[question.id] !== undefined);
 
-    const onNext = () => {
-        onSubmitPostAnswers();
-
+    const onNext = async () => {
+        if (viewMode === "result") {
+            setViewMode("postQuestionnaire");
+            return;
+        } 
+        
         if (viewMode === "postQuestionnaire") {
-            setViewMode("result");
-        } else if (viewMode === "result") {
+            await onSubmitPostAnswers();
             onComplete();
             setViewMode("forward")
         }
     }
 
     const onBack = () => {
-        setViewMode("result");
+        if (viewMode === "postQuestionnaire") {
+            setViewMode("result");
+            return;
+        }
+        
+        if (viewMode === "forward") {
+            setViewMode("postQuestionnaire")
+        }
     }
 
     const result = calculateResultsForNonGamifiedVersion(answers);
@@ -81,7 +90,7 @@ export function NonGamifiedResultPage({
 
             <div className="mt-4 grid grid-cols-[1fr_auto_1fr] items-center gap-x-3 pb-5 pt-3">
                 <div className="justify-self-start">
-                        {viewMode === "forward" ?
+                        {viewMode !== "result" ?
                             <FooterButton
                                 label="Back"
                                 iconSrc="/icons/utility/arrow-left.svg"
@@ -102,7 +111,11 @@ export function NonGamifiedResultPage({
                             iconAlt="Next"
                             onClick={onNext}
                             reverse={false}
-                            disabled={!isPostQuestionnaireCompleted}
+                            disabled={
+                                viewMode === "postQuestionnaire" ?
+                                !isPostQuestionnaireCompleted :
+                                false
+                            }
                         />
                     : null}
                 </div>

@@ -156,7 +156,7 @@ export function GamifiedQuestionnaire({user}: GamifiedQuestionnaireProps) {
         readOnlyPost={result.readOnlyPost}
         readOnlyOpen={result.readOnlyOpen}
         open={result.open}
-        onSubmitPostAnswers={() => {result.submitPostAnswers()}}
+        onSubmitPostAnswers={() => result.submitPostAnswers()}
         onSubmitOpenAnswers={() => result.submitOpenAnswers()}
         stepIndex={result.stepIndex}
         onPrev={result.goToPrevStep}

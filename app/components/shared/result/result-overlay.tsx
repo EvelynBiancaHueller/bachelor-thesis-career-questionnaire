@@ -22,8 +22,8 @@ export type ResultsOverlayProps = {
     onNext: () => void;
     onClose: () => void;
     onComplete: () => void;
-    onSubmitPostAnswers: () => void;
-    onSubmitOpenAnswers: () => void;
+    onSubmitPostAnswers: () => Promise<void>;
+    onSubmitOpenAnswers: () => Promise<void>;
 };
 
 export function ResultsOverlay({
@@ -82,18 +82,18 @@ export function ResultsOverlay({
         }
 
         if (!readOnlyPost && isPostQuestionnaire) {
-            onSubmitPostAnswers();
+            await onSubmitPostAnswers();
         }
 
         if (!readOnlyOpen && isOpenQuestionnaire) {
-            onSubmitOpenAnswers();
+            await onSubmitOpenAnswers();
         }
 
         onNext();
         return;
     }
 
-    const nextLabel = handleNextlabel(isLast, isPostQuestionnaire, readOnlyPost);
+    const nextLabel = handleNextlabel(isLast, isPostQuestionnaire, isOpenQuestionnaire, readOnlyPost);
 
     return (
         <OverlayShell onClose={onClose}>
@@ -153,8 +153,8 @@ export function ResultsOverlay({
     );
 }
 
-function handleNextlabel(isLast: boolean, isPostQuestionnaire: boolean, readOnlyPost: boolean): string {
+function handleNextlabel(isLast: boolean, isPostQuestionnaire: boolean, isOpenQuestionnaire: boolean, readOnlyPost: boolean): string {
     if (isLast) return "Complete";
-    if (!readOnlyPost && isPostQuestionnaire) return "Send";
+    if (!readOnlyPost && (isPostQuestionnaire || isOpenQuestionnaire)) return "Submit";
     return "Next";
 }

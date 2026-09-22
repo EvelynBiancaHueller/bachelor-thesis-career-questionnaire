@@ -32,6 +32,16 @@ export function ResultSteps({
     onOpenAnswerChange: onOpenAnswerChange,
 }: ResultStepsProps): Step[] {
     return [
+         {
+            id: "result",
+            title: "",
+            body: (
+                <ResultScore
+                    riasecData={riasecData}
+                    topThreeResults={topThreeResults}
+                />
+            )
+        },
         {
             id: "post-questionnaire",
             title: "Post Questionnaire",
@@ -53,16 +63,6 @@ export function ResultSteps({
                     answers={openAnswers}
                     readOnly={readOnlyOpen}
                     onAnswerChange={onOpenAnswerChange}
-                />
-            )
-        },
-        {
-            id: "result",
-            title: "",
-            body: (
-                <ResultScore
-                    riasecData={riasecData}
-                    topThreeResults={topThreeResults}
                 />
             )
         },

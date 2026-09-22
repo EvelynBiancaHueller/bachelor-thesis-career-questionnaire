@@ -20,7 +20,7 @@ export function PostQuestionnaire({
 }: PostQuestionnaireProps) {
     return (
         <div className="flex flex-col items-center pb-5">
-            <p className="text-center mb-3">Please fill the post questionnaire out to proceed to your results.</p>
+            <p className="text-center mb-3">Please fill the post questionnaire out to complete the study.</p>
             {questions.map((question) => (
                 <div
                     key={question.id}
