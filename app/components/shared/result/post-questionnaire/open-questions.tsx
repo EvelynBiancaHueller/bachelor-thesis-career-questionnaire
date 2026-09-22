@@ -18,8 +18,8 @@ export function OpenEndedQuestion({
     onAnswerChange,
 }: OpenQuestionProps) {
     return (
-        <div className="flex max-h-[50vh] min-h-0 flex-col overflow-y-auto pr-2 pl-2 pb-5">
-            <p className="text-center mb-3">We would greatly appreciate your answers to the following open questions. They can provide valuable qualitatiev insights, but you are also welcome to skip them and continue to your results.</p>
+        <div className="flex flex-col px-2 pb-5">
+            <p className="text-center mb-3">We would greatly appreciate your answers to the following open questions. They can provide valuable qualitatiev insights, but you can also skip them.</p>
             <div className="space-y-6">
                 {questions.map((question, index) => {
                     const answerKey = question.id;
